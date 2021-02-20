@@ -8,14 +8,14 @@ exports.signup = (req,res) => {
     // Checking validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
+      return res.status(422).json({ error: errors.array()[0].msg });
     }
     // creating object of User model and saving info in DB
     const user = new User(req.body);
     user.save( (err,user) => {
         if(err){
             return res.status(400).json({
-                err : "Not able to save user in DB"
+                error : "Not able to save user in DB"
             })
         }
         res.json({
@@ -33,7 +33,7 @@ exports.signin = (req,res) => {
     // Checking validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        return res.status(422).json({ error: errors.array()[0].msg });
     }
 
     user.findOne({email}, (err,user) => {

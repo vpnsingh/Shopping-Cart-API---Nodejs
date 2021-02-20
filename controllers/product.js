@@ -26,8 +26,8 @@ exports.createProduct = ( req, res) => {
             })
         }
         // handling the response
-        const { name, description, price, stock, photo, category } = product;
-        if(!name || !description || !price || !stock || !photo || !category){
+        const { name, description, price, stock, category } = fields;
+        if(!name || !description || !price || !stock || !category){
             return res.status(400).json({
                 error: "Fields are missing !!!"
             })

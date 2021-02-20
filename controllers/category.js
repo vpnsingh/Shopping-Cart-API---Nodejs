@@ -5,7 +5,7 @@ exports.getCategoryById = ( req, res, next, id) => {
     Category.findById(id).exec((err,cat) => {
         if(err){
             return res.status(400).json({
-                err : "Category Not Found"
+                error : "Category Not Found"
             })
         }
         req.category = cat;
@@ -19,7 +19,7 @@ exports.createCategory = ( req, res) => {
     category.save((err, category) => {
         if(err){
             return res.status(400).json({
-                err : "Not able to save category"
+                error : "Not able to save category"
             })
         }
         res.json(category)
